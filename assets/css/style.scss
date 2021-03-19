@@ -5,3 +5,8 @@
 $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
 @import "jekyll-theme-chirpy";
+
+@font-face {
+	font-family: "estrada-signature";
+	src: url("../fonts/estrada-signature.ttf");
+}

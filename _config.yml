@@ -1,6 +1,3 @@
-# The Site Configuration
-
-# Import the theme
 theme: jekyll-theme-chirpy
 
 # Only if your site type is GitHub Project sites and doesn't have a custom domain,
@@ -11,46 +8,30 @@ baseurl: ''
 lang: en-US
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Asia/Shanghai
+timezone: America/Phoenix
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # --------------------------
-title: Chirpy                          # the main title
+url: 'https://wanderingnotebook.dev'
+title: Wandering Notebook
+tagline: Personal dev blog; exploring science, thought, and life
+description: Personal dev blog; exploring science, thought, and life
 
-tagline: A text-focused Jekyll theme   # it will display as the sub-title
-
-description: >-                        # used by seo meta and the atom feed
-  A minimal, portfolio, sidebar,
-  bootstrap Jekyll theme with responsive web design
-  and focuses on text presentation.
-
-# fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: ''
-
-author: your_full_name                  # change to your full name
-
+author: David
 github:
-  username: github_username             # change to your github username
-
-twitter:
-  username: twitter_username            # change to your twitter username
-
+  username: 'dcalano'
 social:
-  name: your_full_name                  # it will shows as the copyright owner in Footer
-  email: example@doamin.com             # change to your email address
+  name: David Calano
+  email: dcalano@protonmail.com
   links:
-    # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
-    # Uncomment below to add more social links
-    # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://github.com/dcalano
+    - https://stackoverflow.com/
 
-google_site_verification: google_meta_tag_verification # change to your verification string
+google_site_verification: google_meta_tag_verification
 # --------------------------
 
 google_analytics:
-  id: ''          # Fill with your Google Analytics ID
+  id: ''
   pv:
     # The Google Analytics pageviews switch.
     # DO NOT enable it unless you know how to deploy the Google Analytics superProxy.
@@ -61,39 +42,34 @@ google_analytics:
     cache: false  # pv data local cache, good for the users from GFW area.
 
 # Prefer color scheme setting.
-#
 # Note: Keep empty will follow the system prefer color by default,
 # and there will be a toggle to switch the theme between dark and light
 # on the bottom left of the sidebar.
 #
 # Available options:
-#
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
-#
 theme_mode:   # [light|dark]
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url
 # will be added to all image (site avatar & posts' images) paths starting with '/'
-#
 # e.g. 'https://cdn.com'
 img_cdn: ''
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://cdn.jsdelivr.net/gh/cotes2020/chirpy-images/commons/avatar.jpg
+avatar: /assets/img/compass.webp
 
-# boolean type, the global switch for ToC in posts.
+# boolean type, the global switch for Table of Contents in posts.
 toc: true
 
 disqus:
-  comments: false  # boolean type, the global switch for posts comments.
-  shortname: ''    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+  comments: false
+  shortname: ''
 
 paginate: 10
 
 # ------------ The following options are not recommended to be modified ------------------
-
 kramdown:
   syntax_highlighter: rouge
   syntax_highlighter_opts:   # Rouge Options › https://github.com/jneen/rouge#full-options
@@ -114,16 +90,15 @@ collections:
     output: true
     sort_by: order
 
-
 defaults:
   -
     scope:
-      path: ''          # An empty string here means all files in the project
+      path: ''
       type: posts
     values:
       layout: post
-      comments: true    # Enable comments in posts.
-      toc: true         # Display TOC column in posts.
+      comments: false
+      toc: true
   -
     scope:
       path: _drafts
@@ -132,11 +107,11 @@ defaults:
   -
     scope:
       path: ''
-      type: tabs             # see `site.collections`
+      type: tabs
     values:
       layout: page
       permalink: /:title/
-      dynamic_title: true    # Hide title in mobile screens.
+      dynamic_title: true
 
 sass:
   style: compressed
