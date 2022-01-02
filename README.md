@@ -1,4 +1,4 @@
-# Particle Jekyll Theme
+# [Particle Jekyll Theme](https://github.com/nrandecker/particle)
 
 ![](./particle.jpg)
 
