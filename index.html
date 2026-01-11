@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Calano</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="canvas-container"></div>
+
+    <div class="nav-indicator">
+        <div class="nav-dot active" data-section="0"></div>
+        <div class="nav-dot" data-section="1"></div>
+        <div class="nav-dot" data-section="2"></div>
+        <div class="nav-dot" data-section="3"></div>
+        <div class="nav-dot" data-section="4"></div>
+    </div>
+
+    <div class="section-wrapper active" id="section-0">
+        <div id="landing-content" class="section-content">
+            <h1 class="signature">David Calano</h1>
+            <p class="subtitle">Creative Developer & Web Archivist</p>
+            <div class="contact-links">
+                <a href="https://github.com/dcalano">GitHub</a>
+                <a href="https://linkedin.com/david.calano">LinkedIn</a>
+                <a href="https://x.com/lifefromalaptop">X</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrapper" id="section-1">
+        <div id="projects-content" class="section-content">
+            <h1 id="projects-title">Featured Projects</h1>
+            <div class="projects-container">
+                <div class="project">
+                    <div class="project-thumbnail"></div>
+                    <div class="project-info">
+                        <a class="link" href="#"><h2>Research Atlas</h2></a>
+                        <p>A GIS platform for exploring arXiv preprints from around the world</p>
+                    </div>
+                </div>
+                <div class="project right">
+                    <div class="project-thumbnail" style="background: linear-gradient(45deg, #11998e, #38ef7d);"></div>
+                    <div class="project-info">
+                        <a class="link" href="https://memento-damage.cs.odu.edu/"><h2>Memento Damage</h2></a>
+                        <p>Web server and CLI tool for analyzing Web archives and deriving a mesuare of damage based on missing resources</p>
+                    </div>
+                </div>
+                <div class="project">
+                    <div class="project-thumbnail" style="background: linear-gradient(45deg, #ee0979, #ff6a00);"></div>
+                    <div class="project-info">
+                        <a class="link" href="#"><h2>Project 3</h2></a>
+                        <p>Project 3 description</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <div class="section-wrapper" id="section-2">
+        <div id="work-content" class="section-content">
+            <h2>Experience</h2>
+            <div class="timeline">
+                <div class="work-card">
+                    <img src="assets/nga.webp" />
+                    <div class="work-card-content">
+                        <h4>National Geospatial-Intellgence Agency</h4>
+                        <span class="role">Multimedia Specialist</span>
+                        <span class="date">2024 - Present</span>
+                        <p><s>[REDACTED]</s></p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="assets/odu-crown.webp" />
+                    <div class="work-card-content">
+                        <h4>PhD Research Student</h4>
+                        <span class="role">Researcher & Developer</span>
+                        <span class="date">2022 - Present</span>
+                        <p>Researcher working on Web archiving projects, Artificial Intelligence, and data visualization for various projects and researchers, including NYU Libraries and Los Alamos National Laboratory.</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <img src="assets/vmasc.webp" />
+                    <div class="work-card-content">
+                        <h4>Virginia Modeling and Simulation Center</h4>
+                        <span class="role">Full-Stack Developer</span>
+                        <span class="date">2023 - 2025</span>
+                        <p>Built platform for coordinating and managing disaster recovery efforts.</p>
+                    </div>
+                </div>
+                <div class="work-card">
+                    <div class="work-card-content">
+                        <h4>Academies of Math & Science</h4>
+                        <span class="role">Teacher</span>
+                        <span class="date">2019 - 2022</span>
+                        <p>Computer Science and Engineering teacher.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrapper" id="section-3">
+        <div id="education-content" class="section-content">
+            <h2>Education</h2>
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <h3>Computer Science, Ph.D (2026)</h3>
+                    <p><strong>Old Dominion University</strong></p>
+                    <p>Web Archiving Ph.D student with the <a class="link" style="color:aqua" href="https://oduwsdl.github.io/">Web Science & Digital Libraries</a> research group</p>
+                </div>
+                <div class="edu-card">
+                    <h3>Computer Science, B.S.</h3>
+                    <p><strong>Old Dominion University</strong></p>
+                </div>
+                <div class="edu-card">
+                    <h3>Certifications</h3>
+                    <ul style="list-style-position: inside; margin-top: 10px; line-height: 1.6;">
+                        <li>IBM Quantum</li>
+                        <li>WebGL Specialist</li>
+                        <li>Three.js Journey Master</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section-wrapper" id="section-4">
+        <div id="contact-content" class="section-content">
+            <div class="form-box">
+                <h2 style="text-align: center; margin-bottom: 20px;">Get In Touch</h2>
+                <form onsubmit="event.preventDefault(); handleSubmit(event);">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="main.js" />
+</body>
+</html>
