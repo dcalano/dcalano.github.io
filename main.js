@@ -78,7 +78,6 @@ for (let i = 0; i < PARTICLE_COUNT; i++) {
 whGeo.setAttribute('position', new THREE.BufferAttribute(whPos, 3))
 whGeo.setAttribute('alpha', new THREE.BufferAttribute(whAlpha, 1))
 
-// Use a simple shader material for better performance and alpha control
 const whMat = new THREE.ShaderMaterial({
   uniforms: {
     color: { value: new THREE.Color(0xffffff) }
@@ -111,8 +110,7 @@ scene.add(wormhole)
 
 let currentSection = 0
 let isTransitioning = false
-let isSpawning = false // Controls if new particles are born
-// Dynamic curve target for the wormhole effect
+let particlesSpawning = false
 let tunnelTarget = { x: 0, y: 0 }
 
 const sections = document.querySelectorAll('.section-wrapper')
@@ -130,21 +128,19 @@ const animate = () => {
   for (let i = 0; i < PARTICLE_COUNT; i++) {
     if (whActive[i]) {
       activeCount++
-      // Accelerate as they get closer (simulate suction)
+
       const speed = whSpeed[i] * (1 + whProgress[i] * 4)
       whProgress[i] += speed
 
       // Linear interpolation from APEX_Z to BASE_Z
       const z = APEX_Z + (BASE_Z - APEX_Z) * whProgress[i]
 
-      // Calculate cone radius -- r = lerp(apex_r, base_r, progress)
-      const r = APEX_RADIUS + (BASE_RADIUS - APEX_RADIUS) * Math.pow(whProgress[i], 2) // pow(2) makes it curve slightly
+      // Cone radius: r = lerp(apex_r, base_r, progress)
+      const r = APEX_RADIUS + (BASE_RADIUS - APEX_RADIUS) * Math.pow(whProgress[i], 2)
 
-      // Calculate spiral angle, add rotation based on progress
-      const currentAngle = whAngle[i] + (whProgress[i] * 10) // 10 radians of rotation over lifetime
+      const currentAngle = whAngle[i] + (whProgress[i] * 10)
 
       // Curve calculation
-      // Calculate "distance from camera" factor (1.0 at Apex, 0.0 at Camera)
       const distFactor = 1.0 - whProgress[i]
       // Quadratic curve offset: 0 at camera, max at Apex
       const curveX = tunnelTarget.x * distFactor * distFactor
@@ -158,7 +154,7 @@ const animate = () => {
       positions[i*3+1] = Math.sin(currentAngle) * r + curveY + twistY
       positions[i*3+2] = z
 
-      // Fade in quickly at start, fade out at very end
+      // Fade in, fade out
       if (whProgress[i] < 0.1) alphas[i] = whProgress[i] * 10
       else if (whProgress[i] > 0.9) alphas[i] = (1 - whProgress[i]) * 10
       else alphas[i] = 1
@@ -168,8 +164,7 @@ const animate = () => {
         alphas[i] = 0
         positions[i*3+2] = APEX_Z
       }
-    } else if (isSpawning) {
-      // Random chance to spawn if inactive and spawning enabled
+    } else if (particlesSpawning) {
       if (Math.random() < 0.05) {
         whActive[i] = 1
         whProgress[i] = 0
@@ -198,7 +193,7 @@ const startTransition = (targetIndex) => {
   const oldSection = sections[currentSection]
   const newSection = sections[targetIndex]
 
-  isSpawning = true
+  particlesSpawning = true
 
   gsap.to(oldSection, {
     duration: 1.5,
@@ -209,14 +204,12 @@ const startTransition = (targetIndex) => {
     onComplete: () => {
       oldSection.classList.remove('active')
       oldSection.style.visibility = 'hidden'
-      gsap.set(oldSection, { scale: 1, z: 0 }) // Reset properties for next time it's shown
+      gsap.set(oldSection, { scale: 1, z: 0 })
     }
   })
 
-  // 3. Wait for wormhole to be "thick" before showing new content
-  // The wormhole fills up in about 1-1.5 seconds based on speed
   setTimeout(() => {
-    isSpawning = false
+    particlesSpawning = false
 
     newSection.classList.add('active')
     newSection.style.visibility = 'visible'
@@ -242,7 +235,6 @@ const startTransition = (targetIndex) => {
   }, 1900)
 }
 
-// INPUT HANDLERS
 dots.forEach(dot => {
   dot.addEventListener('click', () => {
     startTransition(parseInt(dot.dataset.section))
